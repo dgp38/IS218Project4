@@ -55,7 +55,7 @@ class questionDB
         $statement->closeCursor();
 
     }
-    public static function newAnswer($answer, $questionID){
+    public static function newAnswer($answer, $questionId){
         global $db;
 
         $query = 'INSERT INTO answers (answer, questionId) VALUES (:answer, :questionId)';

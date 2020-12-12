@@ -9,6 +9,11 @@
 </head>
 <!-- the body section -->
 <body>
+    <header>
+        <a href="?action=logout" class="formButton1">Log out</a>
+        <h1 id="header">Logout successful!</h1>
+    </header>
+</body>
 
 <div class="container">
     <header><h1>IS218 PROJECT-3</h1></header>
