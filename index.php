@@ -34,7 +34,7 @@ switch ($action) {
             $error = 'Email and Password not include';
             include('error_page/errorcheck.php');
         } else {
-            $userId = AccountsDB::validate_login($email, $password);
+            $user = AccountsDB::validate_login($email, $password);
             $userId = $user->getId();
             if ($userId == false) {
                 //$error = 'Invalid Login';
