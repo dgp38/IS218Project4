@@ -58,7 +58,10 @@ class questionDB
     public static function newAnswer($answer, $questionId){
         global $db;
 
-        $query = 'INSERT INTO answers (answer, questionId) VALUES (:answer, :questionId)';
+        $query = 'INSERT INTO answers 
+                (answer, questionId) 
+                VALUES 
+                    (:answer, :questionId)';
         $statement = $db->prepare($query);
         $statement->bindValue(":answer", $answer);
         $statement->bindValue(":questionId", $questionId);

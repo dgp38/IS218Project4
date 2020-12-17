@@ -119,6 +119,19 @@ switch ($action) {
 
         break;
     }
+
+    case 'single_question': {
+        $userId = $_SESSION['userId'];
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        if ($userId == NULL || $userId < 0) {
+            header('Location: .?action=show_login');
+        } else {
+            $question = QuestionDB::get_users_questions($questionId);
+            $user = AccountDB::get_user($question['ownerId']);
+            include('views/singlequestion.php');
+        }
+        break;
+    }
     case 'delete_question':
     {
         $questionId = filter_input(INPUT_POST, 'questionId');
@@ -134,17 +147,33 @@ switch ($action) {
     }
     case 'display_answer':
     {
+        $userId = filter_input(INPUT_GET, 'userId');
+        if ($userId == NULL || $userId < 0) {
+            header('Location: .?action=displayquestion.php');
+        } else {
+            include('views/answer_form.php');
+
+        }
+        break;
+    }
+    /*}
         $questionId = filter_input(INPUT_POST, 'questionId');
         include('views/answer_form.php');
     }
+    */
 
     case 'submit_answer':
-        {
-            $questionId = filter_input(INPUT_POST, 'questionId');
-            $answer = filter_input(INPUT_POST, 'answer');
+    {
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $answer = filter_input(INPUT_POST, 'answer');
+        if ($questionId == NULL || $userId == NULL) {
+            $error = 'All Fields are required';
+            include('error_page/errorcheck.php');
+        } else {
             questionDB::newAnswer($answer, $questionId);
             header("Location: ?action=display_questions");
         }
+    }
 
     case 'logout':
         {

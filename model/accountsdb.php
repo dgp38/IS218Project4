@@ -20,7 +20,7 @@ class AccountsDB
             return false;
         }
     }
-}
+
 }
 
 
