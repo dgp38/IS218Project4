@@ -145,12 +145,17 @@ switch ($action) {
 
         }
     }
+
     case 'display_answer':
     {
         $userId = filter_input(INPUT_GET, 'userId');
+        $listanswer =filter_input(INPUT_GET, 'listanswer');
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=displayquestion.php');
         } else {
+            $F_name = getName($userId);
+            $answer = ($listanswer === 'all') ?
+                questionDB::getAnswer($userId):
             include('views/answer_form.php');
 
         }
@@ -164,6 +169,7 @@ switch ($action) {
 
     case 'submit_answer':
     {
+        $userId = filter_input(INPUT_GET, 'userId');
         $questionId = filter_input(INPUT_POST, 'questionId');
         $answer = filter_input(INPUT_POST, 'answer');
         if ($questionId == NULL || $userId == NULL) {

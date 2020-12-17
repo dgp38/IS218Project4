@@ -68,7 +68,7 @@ class questionDB
         $statement->execute();
         $statement->closeCursor();
     }
-    /*public static function getAnswer()
+    public static function getAnswer()
     {
         global $db;
 
@@ -79,5 +79,5 @@ class questionDB
 
         $statement->closeCursor();
         return $answer;
-    }*/
+    }
 }

@@ -1,11 +1,17 @@
+
 <?php include('abstract/header.php'); ?>
-<body>
-    <form action='index.php' method='post'>
-        <h1>Answer the question</h1>
-        <textarea name='answer' placeholder='Your answer'></textarea><br>
-        <input type="hidden" name="questionId" value="<?php echo $questionId; ?>">
-        <input type="hidden" name="action" value="post_answer">
-        <input type='submit' class='formButton' value='Post'><br>
-    </form>
-</body>
-<?php include('abstract/footer.php'); ?>
+
+<h1> Add New Answer</h1>
+<form action ="index.php" method="post">
+    <input type="hidden" name="action" value ="submit_answer">
+    <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+
+    <div class="form-group">
+        <label for="body">Answer: </label>
+        <input class="form-control" type=text name="body" id="body">
+    </div>
+
+    <div><input type="submit" class="btn btn-primary" value="Submit Answer"></div>
+</form>
+
+<?php include('abstract/footer.php'); ?>*/
