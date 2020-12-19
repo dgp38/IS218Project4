@@ -51,17 +51,6 @@
         </tr>
     <?php endforeach; ?>
 </table>
-<table class="table" >
-    <tr>
-        <th> <input  type="submit" value="Delete"></th>
-        <th> <input type="submit" value="Views"></th>
-        <th> <input type="submit" value="New Answer"></th>
-    </tr>
-</table>
-<form action="index.php" method="post">
-    <input type="hidden" name="action" value="logout">
-    <button class="btn btn-success" value="Logout">Logout</button>
 
-</form>
 
 <?php include('abstract/footer.php');  ?>

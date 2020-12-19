@@ -9,6 +9,8 @@ require('model/questionsdb.php');
 require ('model/registrationdb.php');
 require ('model/Namedb.php');
 
+session_start();
+
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -65,7 +67,7 @@ switch ($action) {
             include('error_page/errorcheck.php');
 
         } else {
-            $userId = AccountsDB:: create_account($email, $firstname, $lastname, $birthday, $password);
+            $userId = RegisterDB::create_account($email, $firstname, $lastname, $birthday, $password);
             header("Location: .?action=display_questions&userId=$userId");
         }
         break;
@@ -121,13 +123,13 @@ switch ($action) {
     }
 
     case 'single_question': {
-        $userId = $_SESSION['userId'];
+        $userId = filter_input(INPUT_POST, 'userId');
         $questionId = filter_input(INPUT_POST, 'questionId');
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=show_login');
         } else {
-            $question = QuestionDB::get_users_questions($questionId);
-            $user = AccountDB::get_user($question['ownerId']);
+            $questionid = QuestionDB::single_question($questionId);
+            $userid = AccountsDB::getuser($questionid['ownerId']);
             include('views/singlequestion.php');
         }
         break;
@@ -183,8 +185,19 @@ switch ($action) {
 
     case 'logout':
         {
-        session_destroy();
-        include('views/login_Form.php');
+        $_SESSION = array();
+        session_start();
+        header('Location: ');
+
+
+        $Name = 'fname';
+        $lname = 'lname';
+        $email = 'email';
+        $ID = 'id';
+        $expire = strtotime('-1 year');
+
+        setcookie($Name,$lname,$email,$ID, $expire);
+        header('Location: ');
     }
 
     default: {

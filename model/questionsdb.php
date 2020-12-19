@@ -55,6 +55,18 @@ class questionDB
         $statement->closeCursor();
 
     }
+    public static function single_question($questionId)
+{
+    global $db;
+    $query = 'SELECT * FROM questions WHERE id = :questionId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':questionId', $questionId);
+    $statement->execute();
+    $questionid = $statement->fetch();
+    $statement->closeCursor();
+
+    return $questionid;
+}
     public static function newAnswer($answer, $questionId){
         global $db;
 
@@ -75,7 +87,7 @@ class questionDB
         $query = 'SELECT * FROM answer';
         $statement = $db->prepare($query);
         $statement->execute();
-        $questions = $statement->fetchAll();
+        $answer = $statement->fetchAll();
 
         $statement->closeCursor();
         return $answer;

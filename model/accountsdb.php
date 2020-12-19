@@ -21,6 +21,17 @@ class AccountsDB
         }
     }
 
+    public static function getuser($userId)
+    {
+        global $db;
+        $query = 'SELECT * FROM account FROM id = :userId';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userId', $userId);
+        $statement->execute();
+        $userid = $statement->fetch();
+        $statement->closeCursor();
+        return $userid;
+    }
 }
 
 
