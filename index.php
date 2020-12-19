@@ -187,16 +187,17 @@ switch ($action) {
         {
         $_SESSION = array();
         session_start();
-        header('Location: ');
 
+            $cookie_name = "id";
+            $cookie_value = "fname";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
-        $Name = 'fname';
-        $lname = 'lname';
-        $email = 'email';
-        $ID = 'id';
-        $expire = strtotime('-1 year');
-
-        setcookie($Name,$lname,$email,$ID, $expire);
+            if(!isset($_COOKIE[$cookie_name])) {
+                echo "Cookie named '" . $cookie_name . "' is not set!";
+            } else {
+                echo "Cookie '" . $cookie_name . "' is set!<br>";
+                echo "Value is: " . $_COOKIE[$cookie_name];
+            }
         header('Location: ');
     }
 

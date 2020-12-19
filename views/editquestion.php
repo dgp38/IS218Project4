@@ -1,4 +1,6 @@
-<?php include('abstract/header.php'); ?>
+<?php
+session_start();
+include('abstract/header.php'); ?>
 
 <h1> Edit Question</h1>
 <form action ="index.php" method="post">

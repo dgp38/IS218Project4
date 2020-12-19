@@ -1,5 +1,7 @@
 
-<?php include('abstract/header.php'); ?>
+<?php
+session_start();
+include('abstract/header.php'); ?>
 
 <h1> Add New Answer</h1>
 <form action ="index.php" method="post">

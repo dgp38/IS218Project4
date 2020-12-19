@@ -1,4 +1,7 @@
-<?php include('abstract/header.php'); ?>
+<?php
+session_start();
+include('abstract/header.php'); ?>
+
 <a class="col" href=".?action=display_question_form&userId=<?php echo $userId; ?>">Add Question</a>
 <a class="col" href=".?action=display_questions&userId=<?php echo $userId; ?>&listType=mine">My question</a>
 <a class="col" href=".?action=display_questions&userId=<?php echo $userId; ?>&listType=all">All question</a>
