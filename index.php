@@ -123,11 +123,13 @@ switch ($action) {
     }
 
     case 'single_question': {
+
         $userId = filter_input(INPUT_POST, 'userId');
         $questionId = filter_input(INPUT_POST, 'questionId');
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=show_login');
         } else {
+            $F_name = getName($userId);
             $questionid = QuestionDB::single_question($questionId);
             $userid = AccountsDB::getuser($questionid['ownerId']);
             include('views/singlequestion.php');
@@ -195,8 +197,6 @@ switch ($action) {
             if(!isset($_COOKIE[$cookie_name])) {
                 echo "Cookie named '" . $cookie_name . "' is not set!";
             } else {
-                echo "Cookie '" . $cookie_name . "' is set!<br>";
-                echo "Value is: " . $_COOKIE[$cookie_name]. ".<br>";
                 echo "Successfully Logout";
             }
         header('Location: ');

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('abstract/header.php'); ?>
-<link href="edit_file/register.css" rel="stylesheet">
+<link href="css/register.css" rel="stylesheet">
 <h1>Registration Form</h1>
 <body>
 <form action ="index.php" method="post">

@@ -9,10 +9,11 @@ header {
     border-bottom: 3px solid #143e93;
     margin-bottom: 10px;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
 }
 main {
     padding-top: 4px;
     padding-bottom: 50px;
     position: relative;
-    left: 1100px;
+    left: 70em;
 }
