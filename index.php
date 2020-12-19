@@ -188,18 +188,21 @@ switch ($action) {
         $_SESSION = array();
         session_start();
 
-            $cookie_name = "id";
-            $cookie_value = "fname";
+            $cookie_name = "Id";
+            $cookie_value = "firstname";
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
             if(!isset($_COOKIE[$cookie_name])) {
                 echo "Cookie named '" . $cookie_name . "' is not set!";
             } else {
                 echo "Cookie '" . $cookie_name . "' is set!<br>";
-                echo "Value is: " . $_COOKIE[$cookie_name];
+                echo "Value is: " . $_COOKIE[$cookie_name]. ".<br>";
+                echo "Successfully Logout";
             }
         header('Location: ');
+        break;
     }
+
 
     default: {
         $error = 'Unknown Action';
@@ -207,4 +210,4 @@ switch ($action) {
         }
 
 }
-
+?>
