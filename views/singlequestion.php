@@ -1,8 +1,9 @@
 <?php
 session_start();
 include('abstract/header.php'); ?>
-<a class="col" href=".?action=display_answer&userId=<?php echo $userId; ?>&listanswer=all">All Answer</a>
 <h1> <?php echo $F_name['fname'] ; ?>&nbsp;<?php echo $F_name['lname']; ?></h1>
+
+
 
     <h3> Question Detail:</h3>
     <table class="table">

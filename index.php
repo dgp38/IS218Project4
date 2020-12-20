@@ -81,7 +81,7 @@ switch ($action) {
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=show_login');
         } else {
-            $F_name = getName($userId);
+            $F_name = nameDB::getName($userId);
             $questions = ($listType === 'all') ?
                 questionDB::get_all_question() : questionDB::get_users_questions($userId);
             include('views/displayquestion.php');
@@ -129,9 +129,9 @@ switch ($action) {
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=show_login');
         } else {
-            $F_name = getName($userId);
+            $F_name = nameDB::getName($userId);
             $questionid = QuestionDB::single_question($questionId);
-            $userid = AccountsDB::getuser($questionid['ownerId']);
+            $userid = AccountsDB::getuser($questionid['userid']);
             include('views/singlequestion.php');
         }
         break;
@@ -157,7 +157,7 @@ switch ($action) {
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=displayquestion.php');
         } else {
-            $F_name = getName($userId);
+            $F_name = nameDB::getName($userId);
             $answer = ($listanswer === 'all') ?
                 questionDB::getAnswer($userId):
             include('views/answer_form.php');
@@ -165,11 +165,7 @@ switch ($action) {
         }
         break;
     }
-    /*}
-        $questionId = filter_input(INPUT_POST, 'questionId');
-        include('views/answer_form.php');
-    }
-    */
+
 
     case 'submit_answer':
     {
@@ -197,7 +193,7 @@ switch ($action) {
             if(!isset($_COOKIE[$cookie_name])) {
                 echo "Cookie named '" . $cookie_name . "' is not set!";
             } else {
-                echo "Successfully Logout";
+                echo "Successfully Cookie is set and Successfully Logout";
             }
         header('Location: ');
         break;

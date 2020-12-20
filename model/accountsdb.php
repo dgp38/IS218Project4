@@ -24,7 +24,7 @@ class AccountsDB
     public static function getuser($userId)
     {
         global $db;
-        $query = 'SELECT * FROM account FROM id = :userId';
+        $query = 'SELECT * FROM account WHERE id = :userId';
         $statement = $db->prepare($query);
         $statement->bindValue(':userId', $userId);
         $statement->execute();
