@@ -183,19 +183,17 @@ switch ($action) {
 
     case 'logout':
         {
+        session_destroy();
         $_SESSION = array();
-        session_start();
 
-            $cookie_name = "Id";
-            $cookie_value = "firstname";
-            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+        $name = session_name();
+        $exp = strtotime('-1 year');
 
-            if(!isset($_COOKIE[$cookie_name])) {
-                echo "Cookie named '" . $cookie_name . "' is not set!";
-            } else {
-                echo "Successfully Cookie is set and Successfully Logout";
-            }
-        header('Location: ');
+        $par = session_get_cookie_params();
+
+        setcookie($name, '' ,$exp,$par['path'], $par['domain'],$par['secure'], $par['httponly']);
+
+            header('Location: .?action=show_login');
         break;
     }
 
