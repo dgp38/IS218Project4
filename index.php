@@ -23,7 +23,12 @@ if ($action == NULL) {
 switch ($action) {
     case 'show_login':
     {
-        include('views/login_form.php');
+        if ($_SESSION['userId']) {
+            header('Location: .?action=display_question_form');
+        } else {
+            include('views/login_form.php');
+        }
+
         break;
     }
     case 'validate_login':
@@ -39,6 +44,7 @@ switch ($action) {
             $user = AccountsDB::validate_login($email, $password);
             $userId = $user->getId();
             if ($userId == false) {
+                $_SESSION['userId'] = $userId;
                 //$error = 'Invalid Login';
                 //include('error_page/errorcheck.php');
                 header('Location: .?action=display_registration');
@@ -90,7 +96,7 @@ switch ($action) {
     }
     case 'display_question_form':
     {
-        $userId = filter_input(INPUT_GET, 'userId');
+        $userId = $_SESSION['userId'];
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=display_login');
         } else {
